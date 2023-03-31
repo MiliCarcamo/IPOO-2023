@@ -19,7 +19,7 @@ if ($cantPasajeros <= $capacidadMaxima) {
     //Creo el objViaje, que es una nueva instancia de la clase Viaje
     $objViaje = new Viaje($codigo, $destino, $capacidadMaxima, $pasajeros);
 
-    if ($cantPasajeros < $capacidadMaxima) {
+    if ($capacidadMaxima < $cantPasajeros ) {
         echo "Quedan lugares disponibles. \n";
         do {
             $agregarPasajero = false; 
@@ -30,7 +30,7 @@ if ($cantPasajeros <= $capacidadMaxima) {
                 $capacidadLimite = $objViaje->cantLugaresDisponibles();
                 // echo $capacidadLimite;
                 if ($capacidadLimite >= $cantPasajeros) {
-                    echo "Quedan ".$capacidadLimite. " asientos disponibles. Cuantos pasajeros va a agregra?: ";
+                    echo "Quedan ".$capacidadLimite. " asientos disponibles. Cuantos pasajeros va a agregar?: ";
                     $cantNuevosPasajeros = trim(fgets(STDIN));
                     //$nuevaCantPasajeros va a guardar la cantidad actualizada de pasajeros
                     $nuevaCantPasajeros = $cantPasajeros + $cantNuevosPasajeros;
@@ -49,7 +49,9 @@ if ($cantPasajeros <= $capacidadMaxima) {
         } while ($agregarPasajero);
         echo "Viaje creado con exito. \n";
     }
-}else{
+    echo "Viaje creado con exito. \n";
+}
+else{
 echo "No es posible guardar los datos del Viaje. La cantidad de pasajeros, supera el maximo. \n";
 }
 
