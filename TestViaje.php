@@ -127,7 +127,6 @@ do {
             //Ver viaje
             echo "Los datos del viaje son: \n";
             echo $objViaje;
-            print_r($objViaje);
             break;
         case '2':
             // Ver codigo del viaje
@@ -154,22 +153,32 @@ do {
             $nuevoDestino = trim(fgets(STDIN));
             $objViaje-> setDestino($nuevoDestino);
             echo "Cambio exitoso. \n 
-            Ahora el destino de viaje es: " . $nuevoDestino;
+            Ahora el destino de viaje es: " . $nuevoDestino. "\n";
             break;
         case '6':
             //Modificar datos de un pasajero
             echo "Ingrese el DNI del pasajero que quiere modificar: ";
             $dni = trim(fgets(STDIN));
-            $indice = pasajero();
-            $pasajeroModif = $objViaje->modificarDatosPasajeros($indice, $nombre, $apellido);
-            echo $pasajeroModif;
+            $indice = $objViaje->buscarIndicePasajero($dni);
+            if ($indice == -1) {
+                echo "El dni no se encuentra registrado.\n";
+            }else {
+                $pasajeroModif = $objViaje->getArrayPasajeros($indice);
+                echo "Ingrese el nuevo Nombre: ";
+                $nuevoNombre = trim(fgets(STDIN));
+                echo "Ingrese el nuevo apellido: ";
+                $nuevoApellido = trim(fgets(STDIN));
+                $pasajeroModif = $objViaje->modificarDatosPasajeros($indice, $nuevoNombre, $nuevoApellido);
+                echo "Datos modificados con exito. \n";
+            }
+            
             break;
         case '7':
             //Modificar capacidad maxima
             echo "Ingrese la nueva capacidad Maxima: ";
             $nuevaCapMax = trim(fgets(STDIN));
             $objViaje->setCantMaxPasajeros($nuevaCapMax);
-            echo "La nueva capacidad maxima es: ". $nuevaCapMax;
+            echo "La nueva capacidad maxima es: ". $nuevaCapMax . "\n";
             break;
         default:
             # code...

@@ -86,8 +86,8 @@ class Viaje{
         $i=0;
         $indice = -1;
         $bandera = true;
-        while ($i < count($this->getArrayPasajeros()) && $bandera) {
-            if ($this->getArrayPasajeros([$i]['dni'] == $dni)) {
+        while ($i < count($this->arrayPasajeros) && $bandera) {
+            if ($this->arrayPasajeros[$i]['dni'] == $dni) {
                 $indice = $i;
                 $bandera = false;
             }
